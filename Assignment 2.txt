@@ -1,0 +1,261 @@
+1) Write program that accepts 2 numbers and choice of operation(addition, subtraction, multiplication, division) from user and performs the operation and prints the result.
+Ans:
+use std::io;
+fn main() {
+          println!("Input First number: ");
+          let mut operation1 = String::new();
+          io::stdin()
+          .read_line(&mut operation1)
+          .expect("Not able to read  data");
+ 
+          println!("Input second number:");
+          let mut operation2 = String::new();
+          io::stdin()
+          .read_line(&mut operation2)
+          .expect("Not able to read  data");
+          
+          println!("Enter your choice");
+          let mut ch = String::new();
+          io::stdin()
+          .read_line(&mut ch)
+          .expect("Not able to read  data");
+
+          let a: i32 = operation1.trim().parse().expect("Invalid Input");
+          let b: i32 = operation2.trim().parse().expect("Invalid Input");
+          let choice: i32 = ch.trim().parse().expect("Invalid Input");
+          
+          //let choice= 2;
+
+          match choice{
+          1 => println!("Addition is {}" , a+b),
+          2 => println!("Subtraction is {}" ,a-b),
+          3 => println!("Multiplication is {}" ,a*b),
+          4 => println!("Division is {}" , a/b),
+          _ => println!("something else"),
+}
+
+   
+}
+
+
+2) Modify above program to write functions for each operations .
+Ans: 
+ use std::io;
+fn main() {
+          println!("Input First number: ");
+          let mut operation1 = String::new();
+          io::stdin()
+          .read_line(&mut operation1)
+          .expect("Not able to read  data");
+ 
+          println!("Input second number:");
+          let mut operation2 = String::new();
+          io::stdin()
+          .read_line(&mut operation2)
+          .expect("Not able to read  data");
+          
+          println!("Enter your choice");
+          let mut ch = String::new();
+          io::stdin()
+          .read_line(&mut ch)
+          .expect("Not able to read  data");
+
+          let a: i32 = operation1.trim().parse().expect("Invalid Input");
+          let b: i32 = operation2.trim().parse().expect("Invalid Input");
+          let choice: i32 = ch.trim().parse().expect("Invalid Input");
+          
+          //let choice= 2;
+
+          match choice {
+          1 =>Addition_funtion(a,b),
+          2 =>Subtraction_function(a,b),
+          3 =>Multiplication_function(a,b),
+          4 =>Division_function(a,b),
+          _ => println!("something else"),
+          }
+        
+
+ }  
+
+fn Addition_funtion(a :i32 , b:i32) {
+    println!("Addition is {}", a+b);
+}
+
+fn Subtraction_function(a :i32 , b:i32) {
+    println!("Subtraction is {}", a-b);
+}
+
+fn Multiplication_function(a :i32 , b:i32) {
+    println!("Multiplication is {}", a*b);
+}
+
+fn Division_function(a :i32 , b:i32) {
+    println!("Division is {}", a/b);
+}
+
+3) Write a program that creates employees(id, name, age, addresses(list), hobbies(list)) as per user request and prints properly formatted information. 
+For example if user says 5 employees, it creates 5 employees. You can take inputs from user or generate random programmatically. 
+Ans :
+use std::io;
+
+#[derive(Debug)]
+struct Employee {
+   id:i32,
+   name: String,
+   age:u32,
+   address: Vec<String>,
+   hobbies: Vec<String>,
+    
+}
+
+fn main() {
+    println!("Enter the number of employee:");
+    let mut num_of_employee=String::new();
+    io::stdin()
+    .read_line(&mut num_of_employee)
+    .expect("Unable to read data");
+    let mut emp_num = num_of_employee.trim().parse().unwrap();
+    let mut vec=Vec::<Employee>::new();
+    
+    
+    for x in 0..emp_num
+    {
+    println!("Enter id of employee:");
+    let mut id_of_employee=String::new();
+    io::stdin()
+    .read_line(&mut id_of_employee)
+    .expect("Unable to read data");
+    let mut emp_id=id_of_employee.trim().parse().unwrap();
+    
+    println!("Enter name of employee:");
+    let mut name_of_employee=String::new();
+    io::stdin()
+    .read_line(&mut name_of_employee)
+    .expect("Unable to read data");
+    
+    println!("Enter age of employee:");
+    let mut age_of_employee=String::new();
+    io::stdin()
+    .read_line(&mut age_of_employee)
+    .expect("Unable to read data");
+    let mut emp_age=age_of_employee.trim().parse().unwrap();
+
+
+    let mut emp_hobbies=Vec::<String>::new();
+    emp_hobbies.push("Reading".to_string());
+    emp_hobbies.push("Listening songs".to_string());
+    
+    let mut emp_address=Vec::<String>::new();
+    emp_address.push("Hanuman wadi".to_string());
+    emp_address.push("Dhartrak Phata".to_string());
+
+    let employee=Employee{
+      id : emp_id,
+      name : name_of_employee,
+      age : emp_age,
+      hobbies : emp_hobbies,
+      address : emp_address,
+   };
+   
+    vec.push(employee);
+}
+
+    for x in &vec
+    {
+        println!("{:?},{:?},{:?},{:?},{:?}",x.id,x.name,x.age,x.hobbies,x.address);
+    }
+
+}
+
+4) Modify above program to accept number and operation(addition/subtraction) from user.  If user says 2 and addition, 2 more employees should get added to list and print in end.
+Same way if user says 2 and subtraction 2 employees should get removed and result should printed.
+Ans : 
+use std::io;
+
+#[derive(Debug)]
+struct Employee 
+{
+   id:u32,
+   name: String,
+   age:u32,
+}
+
+fn main() {
+
+    println!("Enter number of employee ");
+    let mut num_of_employee = String::new();
+    io::stdin().read_line(&mut num_of_employee).expect("Unable to read data");
+    let emp_no : u32 = num_of_employee.trim().parse().unwrap();
+   
+    let mut vec = vec![];
+    for _x in 0..emp_no
+    {
+    
+    println!("Enter id of employee :");
+         let mut id_of_employee_str = String::new();
+         io::stdin().read_line(&mut id_of_employee_str).expect("Unable to read data");
+         let  emp_id = id_of_employee_str.trim().parse().unwrap();
+         
+         println!("Enter name of employee:");
+         let mut name_of_employee = String::new();
+         io::stdin().read_line(&mut name_of_employee).expect("Unable to read data");
+         
+         println!("Enter age of employee:");
+         let mut age_of_employee_str = String::new();
+         io::stdin().read_line(&mut age_of_employee_str).expect("Unable to read data");
+         let  emp_age = age_of_employee_str.trim().parse().unwrap();
+         
+         let employee = Employee{
+             id : emp_id,
+             name : name_of_employee,
+             age : emp_age,
+   };
+   
+    //vec.push(employee);
+    
+        println!("Press 1 for addition And Press 2 for remove :");
+        let mut cho = String::new();
+        io::stdin().read_line(&mut cho).expect("Unable to read data");
+        let  choice:u32 = cho.trim().parse().unwrap();
+    
+        //let choice= 2;
+    
+        match choice {
+        1=>(add(&mut vec , employee)),
+        2=>(sub(&mut vec , employee)),
+        _=>println!("something else"),
+     }
+   }
+}
+
+fn add( v:&mut Vec<Employee>,e1:Employee){
+    v.push(e1);
+    println!("{:?}" , v);
+}
+
+
+fn sub(v:&mut Vec<Employee>,e1:Employee){
+    
+        v.push(e1);
+    
+        println!("Enter id of employee that we want to remove :");
+        let mut emp_ID_remove = String::new();
+         io::stdin().read_line(&mut emp_ID_remove).expect("Unable to read data");
+        let  emp_i_rv = emp_ID_remove.trim().parse().unwrap();
+    
+        v.remove(emp_i_rv);
+    
+        println!("{:?}" , v);
+   
+}
+
+
+
+
+
+
+
+
+
+
+
